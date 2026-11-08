@@ -56,7 +56,7 @@ async function findOneByUsername(username) {
     if (results.rowCount === 0) {
       throw new NotFoundError({
         message: "O username informado não foi encontrado no sistema.",
-        action: "Verifique se o username informado está digitado corretamente.",
+        action: "Verifique se o username está digitado corretamente.",
       });
     }
 
