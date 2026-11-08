@@ -22,7 +22,7 @@ async function waitForAllServices() {
     async function fetchStatusPage() {
       const response = await fetch("http://localhost:3000/api/v1/status");
 
-      if (response.status != 200) {
+      if (response.status !== 200) {
         throw Error();
       }
     }
@@ -37,7 +37,7 @@ async function waitForAllServices() {
     async function fetchEmailPage() {
       const response = await fetch(emailHttpUrl);
 
-      if (response.status != 200) {
+      if (response.status !== 200) {
         throw Error();
       }
     }
@@ -98,6 +98,11 @@ async function activateUser(inactiveUser) {
   return await activation.activateUserByUserId(inactiveUser.id);
 }
 
+async function addFeaturesToUser(userObject, features) {
+  const updatedUser = await user.addFeatures(userObject.id, features);
+  return updatedUser;
+}
+
 const orchestrator = {
   waitForAllServices,
   clearDatabase,
@@ -108,5 +113,7 @@ const orchestrator = {
   getLastEmail,
   extractUUID,
   activateUser,
+  addFeaturesToUser,
 };
+
 export default orchestrator;
